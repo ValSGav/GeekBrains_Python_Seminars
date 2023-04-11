@@ -28,7 +28,7 @@ def findMaxLongTemp(listOfTemp):
         else:
             if currLong > maxLong:
                 maxLong = currLong
-                currLong = 0
+            currLong = 0
     return maxLong
 
 days = int(input("Введите количество дней наблюдения температуры: ")) 
