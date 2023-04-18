@@ -25,4 +25,5 @@ for i in range(numb_of_elements):
 
 number = int(input("Введите число, количество вхождений которого мы будем искать в массиве: "))
 
-print(f"Количество вхождений числа {number} в массив {array_of_numbers} - {get_numb_occur_digit_in_array(number, array_of_numbers)} раз")
+print(f"Количество вхождений числа {number} в массив {array_of_numbers} - " 
+      f"{get_numb_occur_digit_in_array(number, array_of_numbers)} раз")
