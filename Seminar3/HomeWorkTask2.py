@@ -11,6 +11,7 @@
 
 
 def print_the_number_closest_in_value_in_the_array(number, arrray_of_numbs):
+    # Алгоритм для не упорядоченного массива, с учетом того, чтоб могут быть два числа(меньше и больше) одинаково близких к "загаданному"
 
     curr_min_diff = 0
     curr_min_negative_diff = 0
