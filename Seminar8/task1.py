@@ -75,6 +75,27 @@ def print_enumerate_list(enum_list, title=''):
             f'{i[0]} - {splitted_str[0]} {splitted_str[1]} {splitted_str[2]} {splitted_str[3]}')
 
 
+def delete_contact(file_name):
+
+    text_for_search = input('Введите текст для поиска контактов которые нужно удалить,\
+                            \nили Enter, чтобы просмотреть все контакты: ')
+
+    enumerate_list_of_found_ares = find_contact_lines(
+        file_name, text_for_search)
+    print_enumerate_list(enumerate_list_of_found_ares,
+                         'Контакты для удаления:')
+    index = int(
+        input('Введите номер контакта, который собираетесь удалить: '))
+
+    list_of_founded_lines = find_contact_lines(file_name, make_enum=False)
+
+   
+    print(f'Удален элемент: {list_of_founded_lines.pop(index - 1)}')
+
+    with open(file_name, 'w', encoding='utf-8') as file_w:
+        file_w.writelines(list_of_founded_lines)
+
+
 def edit_contact(file_name):
 
     text_for_search = input('Введите текст для поиска контактов которые нужно редактировать,\
@@ -116,13 +137,14 @@ def edit_contact(file_name):
 def main():
     file_name = './adress_book.txt'
     user_choise = '0'
-    while user_choise != '5':
+    while user_choise != 'q':
         user_choise = input('Меню: \
                             \n1 - добавить контакт\
                             \n2 - прочитать всю телефонную книгу\
                             \n3 - найти контакт\
                             \n4 - редактировать контакт\
-                            \n5 - выход\
+                            \n5 - удалить контакт\
+                            \nq - выход\
                             \n:')
         if user_choise == '1':
             add_contact(file_name)
@@ -133,6 +155,8 @@ def main():
         elif user_choise == '4':
             edit_contact(file_name)
         elif user_choise == '5':
+            delete_contact(file_name)
+        elif user_choise == 'q':
             print('Всего хорошего')
         else:
             print('Нет такого варианта действия')
