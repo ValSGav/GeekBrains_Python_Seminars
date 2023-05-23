@@ -32,4 +32,4 @@ def print_friendly_pair_less_that_numb(numb):
             print(f"Пара чисел: {i}, {j}")
 
 
-print_friendly_pair_less_that_numb(300000)
+print_friendly_pair_less_that_numb(30000)
