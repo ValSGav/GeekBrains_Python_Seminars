@@ -55,23 +55,22 @@ def find_contact(file_name):
     print_enumerate_list(enumerate_list_of_found_ares, 'Найденные контакты:')
 
 
-def find_contact_lines(file_name, text_filter='') -> list:
+def find_contact_lines(file_name, text_filter='', make_enum=True) -> list:
     with open(file_name, 'r', encoding='utf-8') as file_for_read:
-        list_return = list(filter(lambda x: text_filter in x[1] or text_filter == '' and x[1] != '',
-                                  enumerate(file_for_read.readlines(), start=1)))
-    return list_return
+        if make_enum == True:
+            file_lines = enumerate(file_for_read.readlines(), start=1)
+        else:
+            file_lines = file_for_read.readlines()
 
-def find_contact_lines_not_enum(file_name, text_filter='') -> list:
-    with open(file_name, 'r', encoding='utf-8') as file_for_read:
-        list_return = list(filter(lambda x: text_filter in x[1] or text_filter == '' and x[1] != '',
-                                file_for_read.readlines()))
+    list_return = list(filter(
+        lambda x: text_filter in x[1] or text_filter == '' and x[1] != '', file_lines))
     return list_return
 
 
 def print_enumerate_list(enum_list, title=''):
     print(title)
     for i in enum_list:
-        splitted_str = i[1].replace('\n','').split(';')
+        splitted_str = i[1].replace('\n', '').split(';')
         print(
             f'{i[0]} - {splitted_str[0]} {splitted_str[1]} {splitted_str[2]} {splitted_str[3]}')
 
@@ -81,36 +80,37 @@ def edit_contact(file_name):
     text_for_search = input('Введите текст для поиска контактов которые нужно редактировать,\
                             \nили Enter, чтобы просмотреть все контакты: ')
 
-    enumerate_list_of_found_ares = find_contact_lines(file_name, text_for_search)
+    enumerate_list_of_found_ares = find_contact_lines(
+        file_name, text_for_search)
     print_enumerate_list(enumerate_list_of_found_ares,
                          'Контакты для редактирования:')
     index = int(
         input('Введите номер контакта, который собираетесь редактировать: '))
 
-    list_of_founded_lines = find_contact_lines_not_enum(file_name)
+    list_of_founded_lines = find_contact_lines(file_name, make_enum=False)
 
     edit_name, edit_second_name, edit_last_name, edit_phone = \
-                list_of_founded_lines[index - 1].replace('\n', '').split(';')
+        list_of_founded_lines[index - 1].replace('\n', '').split(';')
     new_name = input(
-            f'Введите новое значение "Имя", или Enter, чтобы не менять(сейчас- {edit_name}): ')
+        f'Введите новое значение "Имя", или Enter, чтобы не менять(сейчас- {edit_name}): ')
     new_second_name = input(
-            f'Введите новое значение "Отчество", или Enter, чтобы не менять(сейчас- {edit_second_name}): ')
+        f'Введите новое значение "Отчество", или Enter, чтобы не менять(сейчас- {edit_second_name}): ')
     new_last_name = input(
-            f'Введите новое значение "Фамилия", или Enter, чтобы не менять(сейчас- {edit_last_name}): ')
+        f'Введите новое значение "Фамилия", или Enter, чтобы не менять(сейчас- {edit_last_name}): ')
     new_phone = input(
-            f'Введите новое значение "Телефон", или Enter, чтобы не менять(сейчас- {edit_phone}): ')
+        f'Введите новое значение "Телефон", или Enter, чтобы не менять(сейчас- {edit_phone}): ')
     if new_name != '':
-            edit_name = new_name
+        edit_name = new_name
     if new_last_name != '':
-            edit_last_name = new_last_name
+        edit_last_name = new_last_name
     if new_second_name != '':
-            edit_second_name = new_second_name
+        edit_second_name = new_second_name
     if new_phone != '':
-            edit_phone = new_phone
+        edit_phone = new_phone
     list_of_founded_lines[index -
-                              1] = f'{edit_name};{edit_second_name};{edit_last_name};{edit_phone}\n'
+                          1] = f'{edit_name};{edit_second_name};{edit_last_name};{edit_phone}\n'
     with open(file_name, 'w', encoding='utf-8') as file_w:
-            file_w.writelines(list_of_founded_lines)
+        file_w.writelines(list_of_founded_lines)
 
 
 def main():
