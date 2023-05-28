@@ -2,6 +2,6 @@
 
 import pandas as pd
 
-df = pd.read_csv('california_housing_train.csv')
+df = pd.read_csv('sample_data\california_housing_train.csv')
 
 print(df.loc[(df.population < df.population.quantile(.05)), ['households']].max())

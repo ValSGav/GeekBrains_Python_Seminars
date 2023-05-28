@@ -7,7 +7,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('seminar9\california_housing_train.csv')
+df = pd.read_csv('sample_data\california_housing_train.csv')
 
 # print(df.median_house_value.max(), df.median_house_value.min())
 

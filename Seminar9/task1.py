@@ -6,7 +6,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('seminar9\california_housing_train.csv')
+df = pd.read_csv('sample_data\california_housing_train.csv')
 print(df.head(20))
 print(df.shape)
 print(df.columns)

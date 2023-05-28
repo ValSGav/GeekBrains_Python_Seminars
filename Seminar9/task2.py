@@ -6,7 +6,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('seminar9\california_housing_train.csv')
+df = pd.read_csv('sample_data\california_housing_train.csv')
 
 # print(df.isnull().sum()) # ищем нулевые данные, затем суммируем все строки , если хоть одна подходит то будет не 0
 # print(df[df['median_income'] < 2][['median_house_value']])
